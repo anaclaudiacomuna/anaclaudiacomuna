@@ -1,1 +1,141 @@
-var db=firebase.firestore();function addEvent(){var e=$("#calendar").evoCalendar("getActiveDate"),t=document.getElementById("title").value,a=document.getElementById("description").value,n=!!document.getElementById("yes").checked;document.getElementById("title").value="",document.getElementById("description").value="",document.getElementById("yes").checked=!0,db.collection("events").add({id:"",name:t,description:a,date:e,type:"event",everyYear:n}).then(t=>{db.collection("events").doc(t.id).update({id:t.id}).then(db.collection("events").doc(t.id).get().then(e=>{$("#calendar").evoCalendar("addCalendarEvent",[{id:t.id,name:e.data().name,description:e.data().description,date:e.data().date,everyYear:e.data().everyYear,type:e.data().type}])}))}).catch(e=>{console.error("Error adding document: ",e)})}function displayAvailableEvents(e){let a=document.getElementById("remove-selection");a.innerHTML="",a.innerHTML="<option selected>Escolha um evento para deletar</option>",e.map(e=>{let t=document.createElement("option");t.text=e.name,t.value=e.id,a.appendChild(t)})}function removeEvent(){var e=document.getElementById("remove-selection").value;$("#calendar").evoCalendar("removeCalendarEvent",e),db.collection("events").doc(e).delete().then(()=>{let e=db.collection("events"),t=$("#calendar").evoCalendar("getActiveDate");var a=t.slice(0,6);let n=e.where("date",">=",a).where("date","<=",a+"");n.get().then(e=>{let t=e.docs,a=[];for(let e=0;e<t.length;e++){var n=t[e].data();a.push(n)}displayAvailableEvents(a)})})}function getEventsFromDatabase(){db.collection("events").get().then(e=>{e.forEach(e=>{$("#calendar").evoCalendar("addCalendarEvent",[{id:e.id,name:e.data().name,description:e.data().description,date:e.data().date,type:e.data().type,everyYear:e.data().everyYear}])})})}function getTodayEvents(e,t,a){let n=db.collection("events"),d=$("#calendar").evoCalendar("getActiveDate");var l=d.slice(0,6);let o=n.where("date",">=",l).where("date","<=",l+"");o.get().then(e=>{let t=e.docs,a=[];for(let e=0;e<t.length;e++){var n=t[e].data();a.push(n)}displayAvailableEvents(a)})}$(function(){getEventsFromDatabase(),document.getElementById("add-button").addEventListener("click",addEvent),document.getElementById("remove-button").addEventListener("click",removeEvent),$("#calendar").on("selectDate",getTodayEvents)});
+var db = firebase.firestore();
+
+// função de adicionar evento, adicionar no banco e adicionar no calendário
+function addEvent() {
+  let active_date = $("#calendar").evoCalendar("getActiveDate");
+  let name = document.getElementById("title").value;
+  let description = document.getElementById("description").value;
+  let repetition = document.getElementById("yes").checked ? true : false;
+  // setando os valores pro default
+  document.getElementById("title").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("yes").checked = true;
+
+  // adicionando no banco de dados
+  db.collection("events")
+    .add({
+      id: "",
+      name: name,
+      description: description,
+      date: active_date,
+      type: "event",
+      everyYear: repetition,
+    })
+    // pegando do banco de dados e colocando no calendário
+    .then((docRef) => {
+      // pegando o id gerado pelo banco de dados e setando como propriedade do documento, para poder usar o mesmo id
+      // para apagar o evento
+      db.collection("events")
+        .doc(docRef.id)
+        .update({ id: docRef.id })
+        .then(
+          db
+            .collection("events")
+            .doc(docRef.id)
+            .get()
+            .then((querySnapshot) => {
+              $("#calendar").evoCalendar("addCalendarEvent", [
+                {
+                  id: docRef.id,
+                  name: querySnapshot.data().name,
+                  description: querySnapshot.data().description,
+                  date: querySnapshot.data().date,
+                  everyYear: querySnapshot.data().everyYear,
+                  type: querySnapshot.data().type,
+                },
+              ]);
+            })
+        );
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+}
+
+// mostrar os eventos para serem deletados
+function displayAvailableEvents(array) {
+  let select = document.getElementById("remove-selection");
+  select.innerHTML = "";
+  select.innerHTML = "<option selected>Escolha um evento para deletar</option>";
+  array.map((evento) => {
+    let option = document.createElement("option");
+    option.text = evento.name;
+    option.value = evento.id;
+    select.appendChild(option);
+  });
+}
+
+function removeEvent() {
+  let selected = document.getElementById("remove-selection").value;
+  $("#calendar").evoCalendar("removeCalendarEvent", selected);
+  db.collection("events")
+    .doc(selected)
+    .delete()
+    .then(() => {
+      let eventsRef = db.collection("events");
+      let active_date = $("#calendar").evoCalendar("getActiveDate");
+      let sliced_date = active_date.slice(0, 6);
+      let query = eventsRef
+        .where("date", ">=", sliced_date)
+        .where("date", "<=", sliced_date + "\uf8ff");
+      query.get().then((doc) => {
+        let array = doc.docs;
+        let arrayWithData = [];
+        for (let index = 0; index < array.length; index++) {
+          let docWithData = array[index].data();
+          arrayWithData.push(docWithData);
+        }
+
+        displayAvailableEvents(arrayWithData);
+      });
+    });
+}
+// pegar os events da database
+function getEventsFromDatabase() {
+  db.collection("events")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        $("#calendar").evoCalendar("addCalendarEvent", [
+          {
+            id: doc.id,
+            name: doc.data().name,
+            description: doc.data().description,
+            date: doc.data().date,
+            type: doc.data().type,
+            everyYear: doc.data().everyYear,
+          },
+        ]);
+      });
+    });
+}
+function getTodayEvents(event, newDate, oldDate) {
+  let eventsRef = db.collection("events");
+  let active_date = $("#calendar").evoCalendar("getActiveDate");
+  let sliced_date = active_date.slice(0, 6);
+  let query = eventsRef
+    .where("date", ">=", sliced_date)
+    .where("date", "<=", sliced_date + "\uf8ff");
+  query.get().then((doc) => {
+    let array = doc.docs;
+    let arrayWithData = [];
+    for (let index = 0; index < array.length; index++) {
+      let docWithData = array[index].data();
+      arrayWithData.push(docWithData);
+    }
+
+    displayAvailableEvents(arrayWithData);
+  });
+}
+// funções que serão executadas assim que o usuario entrar na página
+$(function () {
+  // // função de pegar os eventos que foram colocados no banco de dados
+  getEventsFromDatabase();
+  document.getElementById("add-button").addEventListener("click", addEvent);
+  document
+    .getElementById("remove-button")
+    .addEventListener("click", removeEvent);
+
+  // pegar os eventos para serem deletados
+  $("#calendar").on("selectDate", getTodayEvents);
+});

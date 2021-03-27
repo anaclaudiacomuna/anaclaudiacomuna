@@ -1,34 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Ana Claudia Comuna</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
   </head>
   <body>
     <!-- Calendário -->
@@ -43,52 +27,23 @@
         <h3>Inserir Evento</h3>
         <div class="input-box">
           <label for="title" class="form-label"> Titulo: </label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            class="form-control"
-            placeholder="Titulo do evento..."
-          />
+          <input type="text" name="title" id="title" class="form-control" placeholder="Titulo do evento...">
         </div>
         <div class="input-box">
           <label for="description" class="form-label"> Descrição: </label>
-          <input
-            type="text"
-            name="description"
-            id="description"
-            class="form-control"
-            placeholder="Descrição do evento..."
-          />
+          <input type="text" name="description" id="description" class="form-control" placeholder="Descrição do evento...">
         </div>
         <div class="input-box">
           <label for="yesorno" class="form-label">
             Se repete anualmente?
           </label>
 
-          <div
-            class="btn-group"
-            role="group"
-            aria-label="Basic radio toggle button group"
-          >
-            <input
-              type="radio"
-              class="btn-check"
-              name="btnradio"
-              id="yes"
-              autocomplete="off"
-              checked
-            />
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="yes" autocomplete="off" checked="checked">
 
             <label class="btn btn-outline-secondary" for="yes">Sim</label>
 
-            <input
-              type="radio"
-              class="btn-check"
-              name="btnradio"
-              id="no"
-              autocomplete="off"
-            />
+            <input type="radio" class="btn-check" name="btnradio" id="no" autocomplete="off">
             <label class="btn btn-outline-secondary" for="no">Não</label>
           </div>
         </div>
@@ -105,12 +60,8 @@
         <h3>Deletar Evento</h3>
         <label for="remove-selection"> Escolha um evento </label>
         <p class="form-text">Primeiro clique em um dia do calendário</p>
-        <select
-          id="remove-selection"
-          class="form-select form-select-sm"
-          aria-label=".form-select-sm example"
-        >
-          <option selected>Escolha um evento para deletar</option>
+        <select id="remove-selection" class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <option selected="selected">Escolha um evento para deletar</option>
         </select>
         <div class="btn-group2">
           <button type="button" class="btn btn-danger" id="remove-button">
@@ -204,9 +155,6 @@
     </script>
     <script type="text/javascript" src="./assets/js/app.js"></script>
     <script type="text/javascript" src="./assets/js/simOuNao.js"></script>
-    <script
-      type="text/javascript"
-      src="./assets/js/numeroRandomico.js"
-    ></script>
+    <script type="text/javascript" src="./assets/js/numeroRandomico.js"></script>
   </body>
 </html>

@@ -1,1 +1,10 @@
-function numeroAleatorio(){var e=Math.floor(1e3*Math.random());document.getElementById("number").innerHTML=e}$(function(){document.getElementById("generate-number").addEventListener("click",numeroAleatorio)});
+function numeroAleatorio() {
+  let resposta = Math.floor(Math.random() * 1000);
+  document.getElementById("number").innerHTML = resposta;
+}
+
+$(function () {
+  document
+    .getElementById("generate-number")
+    .addEventListener("click", numeroAleatorio);
+});
