@@ -20,69 +20,74 @@
       <div class="row">
         <div id="calendar"></div>
       </div>
+    </div>
     <!-- CRUD Evento -->
-      <div class="row">
-        <div class="container col-xxl box">
-          <h3>Inserir Evento</h3>
-          <div class="input-box">
-            <label for="title" class="form-label"> Titulo: </label>
-            <input type="text" name="title" id="title" class="form-control" placeholder="Titulo do evento...">
-          </div>
-          <div class="input-box">
-            <label for="description" class="form-label"> Descrição: </label>
-            <input type="text" name="description" id="description" class="form-control" placeholder="Descrição do evento...">
-          </div>
-          <div class="input-box">
-            
-            <label for="yesorno" class="form-label">
-              Se repete anualmente?
-            </label>
+    <div class="row">
+      <div class="container col-xxl box">
+        <h3>Inserir Evento</h3>
+        <div class="input-box">
+          <label for="title" class="form-label"> Titulo: </label>
+          <input type="text" name="title" id="title" class="form-control" placeholder="Titulo do evento...">
+        </div>
+        <div class="input-box">
+          <label for="description" class="form-label"> Descrição: </label>
+          <input type="text" name="description" id="description" class="form-control" placeholder="Descrição do evento...">
+        </div>
+        <div class="input-box">
+          <label for="yesorno" class="form-label">
+            Se repete anualmente?
+          </label>
 
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check" name="btnradio" id="yes" autocomplete="off" checked="checked">
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="yes" autocomplete="off" checked="checked">
 
-              <label class="btn btn-outline-secondary" for="yes">Sim</label>
+            <label class="btn btn-outline-secondary" for="yes">Sim</label>
 
-              <input type="radio" class="btn-check" name="btnradio" id="no" autocomplete="off">
-              <label class="btn btn-outline-secondary" for="no">Não</label>
+            <input type="radio" class="btn-check" name="btnradio" id="no" autocomplete="off">
+            <label class="btn btn-outline-secondary" for="no">Não</label>
           </div>
         </div>
         <div class="input-box btn-group2">
-          <button type="button" class="btn btn-success" id="add-button">Criar Evento</button>
-
+          <button type="button" class="btn btn-success" id="add-button">
+            Criar Evento
+          </button>
         </div>
-      </div> <!--  Fim da Div de Criar-->
+      </div>
+      <!--  Fim da Div de Criar-->
 
       <!-- Inicio da div de Deletar -->
       <div class="container col-xxl box">
-        <h3> Deletar Evento</h3>
-        <label for="remove-selection">
-          Escolha um evento
-        </label>
-          <p class="form-text">Primeiro clique em um dia do calendário</p>
-          <select id="remove-selection" class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected="selected">Escolha um evento para deletar</option>
-          </select>
+        <h3>Deletar Evento</h3>
+        <label for="remove-selection"> Escolha um evento </label>
+        <p class="form-text">Primeiro clique em um dia do calendário</p>
+        <select id="remove-selection" class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <option selected="selected">Escolha um evento para deletar</option>
+        </select>
         <div class="btn-group2">
-          <button type="button" class="btn btn-danger" id="remove-button">Deletar Evento</button>
+          <button type="button" class="btn btn-danger" id="remove-button">
+            Deletar Evento
+          </button>
         </div>
       </div>
     </div>
-      <!-- Fim da div de deletar -->
+    <!-- Fim da div de deletar -->
 
-      <div class="row">
-        <div class="container col box generators">
-          <h3>Gerador Sim ou Não</h3>
-          <button type="button" class="btn btn-success" id="generate-decision">Gerar</button>
-          <p id="decision">:)</p>
-        </div>
-        <div class="container col box generators">
-          <h3>Gerador Número Aleatório</h3>
-          <button type="button" class="btn btn-success" id="generate-number">Gerar</button>
-          <p id="number">:)</p>
-
-        </div>
+    <div class="row">
+      <div class="container col box generators">
+        <h3>Gerador Sim ou Não</h3>
+        <button type="button" class="btn btn-success" id="generate-decision">
+          Gerar
+        </button>
+        <p id="decision">:)</p>
       </div>
+      <div class="container col box generators">
+        <h3>Gerador Número Aleatório</h3>
+        <button type="button" class="btn btn-success" id="generate-number">
+          Gerar
+        </button>
+        <p id="number">:)</p>
+      </div>
+    </div>
 
     <!-- Espaço entre o body e as configurações de firebase, jquery, bootstrap e import do app.js
 
@@ -151,5 +156,5 @@
     <script type="text/javascript" src="./assets/js/app.js"></script>
     <script type="text/javascript" src="./assets/js/simOuNao.js"></script>
     <script type="text/javascript" src="./assets/js/numeroRandomico.js"></script>
-  </div></body>
+  </body>
 </html>
