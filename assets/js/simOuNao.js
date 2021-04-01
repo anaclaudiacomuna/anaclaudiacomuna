@@ -1,1 +1,16 @@
-function simOuNao(){let e=Math.floor(2*Math.random());e=0===e?"Não":"Sim",document.getElementById("decision").innerHTML=e}$(function(){document.getElementById("generate-decision").addEventListener("click",simOuNao)});
+function simOuNao() {
+  let resposta = Math.floor(Math.random() * 2);
+  if (resposta === 0) {
+    resposta = "Não";
+    document.getElementById("decision").innerHTML = resposta;
+  } else {
+    resposta = "Sim";
+    document.getElementById("decision").innerHTML = resposta;
+  }
+}
+
+$(function () {
+  document
+    .getElementById("generate-decision")
+    .addEventListener("click", simOuNao);
+});
